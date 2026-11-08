@@ -1,0 +1,4 @@
+NoteGrid bundles the Poppins typeface (Poppins-Light.ttf, Poppins-Regular.ttf) in romfs/.
+Poppins is copyright The Poppins Project Authors and is licensed under the SIL Open Font License, Version 1.1
+(https://openfontlicense.org). Built with SDL2 (zlib license), SDL2_ttf (zlib license) and libnx (ISC license).
+The Makefile is derived from the libnx application template in switchbrew/switch-examples.
