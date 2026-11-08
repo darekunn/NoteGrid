@@ -1,0 +1,29 @@
+name: Build NRO
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container: devkitpro/devkita64:latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Switch libraries
+        run: dkp-pacman -Syu --noconfirm switch-sdl2 switch-sdl2_ttf switch-freetype
+
+      - name: Build
+        run: make -j$(nproc)
+
+      - name: Package (SD card layout)
+        run: |
+          mkdir -p dist/switch/notegrid
+          cp notegrid.nro dist/switch/notegrid/notegrid.nro
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: notegrid-switch
+          path: dist/
